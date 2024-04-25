@@ -1,10 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
-  const getPeliculas = async () => {
+  const [peliculas, SetPeliculas] = useState("");
+  const getPeliculas = async (peli) => {
+    SetPeliculas(peli);
     const response = await fetch(
-      `https://omdbapi.com/?s=Guardianes*&apikey=dd8f4ac5`
+      `https://omdbapi.com/?s=${peliculas}*&apikey=dd8f4ac5`
     );
     const data = await response.json();
     console.log(data);
@@ -12,7 +14,7 @@ function App() {
 
   useEffect(() => {
     getPeliculas();
-  }, []);
+  }, [peliculas]);
   return <></>;
 }
 
