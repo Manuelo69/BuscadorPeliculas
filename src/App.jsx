@@ -9,13 +9,29 @@ function App() {
       `https://omdbapi.com/?s=${peliculas}*&apikey=dd8f4ac5`
     );
     const data = await response.json();
-    console.log(data);
+    return data;
   };
 
   useEffect(() => {
     getPeliculas();
   }, [peliculas]);
-  return <></>;
+  return (
+    <>
+      <form action="">
+        <h1>Buscador de peliculas</h1>
+        <label htmlFor="peliculas">
+          <legend>Introduce pelicula</legend>
+          <input
+            type="text"
+            name="peliculas"
+            id="peliculas"
+            placeholder="Introduce pelicula"
+          />
+        </label>
+      </form>
+      <table></table>
+    </>
+  );
 }
 
 export default App;
