@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import "./App.css";
 
 function App() {
@@ -26,12 +26,6 @@ function App() {
       getPeliculas(ultimaBusqueda.current);
     }
   };
-
-  useEffect(() => {
-    if (peliculas.trim() !== "") {
-      getPeliculas(peliculas);
-    }
-  }, [peliculas]);
   return (
     <>
       <form action="#">
