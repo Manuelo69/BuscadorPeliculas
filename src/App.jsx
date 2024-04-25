@@ -9,7 +9,7 @@ function App() {
   const getPeliculas = async (peli) => {
     setPeliculas(peli);
     const response = await fetch(
-      `https://omdbapi.com/?s=${peliculas}*&apikey=dd8f4ac5`
+      `https://omdbapi.com/?s=${peli}*&apikey=dd8f4ac5`
     );
     const data = await response.json();
     return data;
@@ -27,7 +27,9 @@ function App() {
   };
 
   useEffect(() => {
-    getPeliculas();
+    if (peliculas.trim() !== "") {
+      getPeliculas(peliculas);
+    }
   }, [peliculas]);
   return (
     <>
