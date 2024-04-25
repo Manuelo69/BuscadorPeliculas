@@ -57,10 +57,17 @@ function App() {
             name="peliculas"
             id="peliculas"
             placeholder="Introduce película"
-            value={busqueda} // Usar el valor del estado de búsqueda
+            value={busqueda}
             onChange={handleInputChange}
           />
         </label>
+        <input
+          type="checkbox"
+          id="ordenar"
+          name="ordenar"
+          checked={ordenadoPorTitulo}
+          onChange={handleCheckboxChange}
+        />
         <button type="button" onClick={handleButtonClick}>
           {buscando ? "Buscando..." : "Buscar Película"}
         </button>
