@@ -41,6 +41,11 @@ function App() {
     }
   };
 
+  const handleCheckboxChange = () => {
+    setOrdenadoPorTitulo(!ordenadoPorTitulo); // Alternar el estado del checkbox
+    getPeliculas(busqueda.trim());
+  };
+
   return (
     <>
       <form action="#">
