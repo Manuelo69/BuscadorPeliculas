@@ -5,7 +5,8 @@ import ListaPeliculas from "./Components/ListaPeliculas/ListaPeliculas";
 function App() {
   const [busqueda, setBusqueda] = useState(""); // Estado para la búsqueda
   const [peliculas, setPeliculas] = useState([]); // Estado para las películas
-  const [buscando, setBuscando] = useState(false);
+  const [buscando, setBuscando] = useState(false); //Estado de la busqueda
+  const [ordenadoPorTitulo, setOrdenadoPorTitulo] = useState(false); // Estado para indicar si las películas están ordenadas por título
 
   const ultimaBusqueda = useRef(""); // Referencia para la última búsqueda
 
@@ -13,10 +14,14 @@ function App() {
     try {
       setBuscando(true);
       const response = await fetch(
-        `https://omdbapi.com/?s=${peli}*&apikey=dd8f4ac5`
+        `https://omdbapi.com/?s=${peli}*&apikey=dd8f4ac5` //Llamada de la api dinamica con la s
       );
       const data = await response.json();
       setPeliculas(data.Search || []); // Actualizar el estado de las películas
+      if (ordenadoPorTitulo) {
+        // Ordenar películas por título si está habilitado
+        peliculas.sort((a, b) => a.Title.localeCompare(b.Title));
+      }
       console.log("Data from API:", data);
     } catch (error) {
       console.error("Error fetching data:", error);
