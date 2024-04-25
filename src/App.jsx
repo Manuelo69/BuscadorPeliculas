@@ -9,11 +9,16 @@ function App() {
   const ultimaBusqueda = useRef(""); // Referencia para la última búsqueda
 
   const getPeliculas = async (peli) => {
-    const response = await fetch(
-      `https://omdbapi.com/?s=${peli}&apikey=dd8f4ac5`
-    );
-    const data = await response.json();
-    setPeliculas(data.Search || []); // Actualizar el estado de las películas
+    try {
+      const response = await fetch(
+        `https://omdbapi.com/?s=${peli}&apikey=dd8f4ac5`
+      );
+      const data = await response.json();
+      setPeliculas(data.Search || []); // Actualizar el estado de las películas
+      console.log("Data from API:", data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
   const handleInputChange = (event) => {
