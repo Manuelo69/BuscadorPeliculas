@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import ListaPeliculas from "./Components/ListaPeliculas/ListaPeliculas";
 
@@ -18,10 +18,6 @@ function App() {
       );
       const data = await response.json();
       setPeliculas(data.Search || []); // Actualizar el estado de las películas
-      if (ordenadoPorTitulo) {
-        // Ordenar películas por título si está habilitado
-        peliculas.sort((a, b) => a.Title.localeCompare(b.Title));
-      }
       console.log("Data from API:", data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -43,8 +39,15 @@ function App() {
 
   const handleCheckboxChange = () => {
     setOrdenadoPorTitulo(!ordenadoPorTitulo); // Alternar el estado del checkbox
-    getPeliculas(busqueda.trim());
   };
+
+  useEffect(() => {
+    if (ordenadoPorTitulo) {
+      setPeliculas((prevPeliculas) =>
+        [...prevPeliculas].sort((a, b) => a.Title.localeCompare(b.Title))
+      );
+    }
+  }, [ordenadoPorTitulo]);
 
   return (
     <>
@@ -61,13 +64,18 @@ function App() {
             onChange={handleInputChange}
           />
         </label>
-        <input
-          type="checkbox"
-          id="ordenar"
-          name="ordenar"
-          checked={ordenadoPorTitulo}
-          onChange={handleCheckboxChange}
-        />
+        <br />
+        <label htmlFor="ordenar">
+          Ordenador por titulo
+          <input
+            type="checkbox"
+            id="ordenar"
+            name="ordenar"
+            checked={ordenadoPorTitulo}
+            onChange={handleCheckboxChange}
+          />
+        </label>
+        <br />
         <button type="button" onClick={handleButtonClick}>
           {buscando ? "Buscando..." : "Buscar Película"}
         </button>
