@@ -5,11 +5,13 @@ import ListaPeliculas from "./Components/ListaPeliculas/ListaPeliculas";
 function App() {
   const [busqueda, setBusqueda] = useState(""); // Estado para la búsqueda
   const [peliculas, setPeliculas] = useState([]); // Estado para las películas
+  const [buscando, setBuscando] = useState(false);
 
   const ultimaBusqueda = useRef(""); // Referencia para la última búsqueda
 
   const getPeliculas = async (peli) => {
     try {
+      setBuscando(true);
       const response = await fetch(
         `https://omdbapi.com/?s=${peli}*&apikey=dd8f4ac5`
       );
@@ -18,6 +20,8 @@ function App() {
       console.log("Data from API:", data);
     } catch (error) {
       console.error("Error fetching data:", error);
+    } finally {
+      setBuscando(false); // Finalizar la búsqueda, establecer buscando a false
     }
   };
 
@@ -48,7 +52,7 @@ function App() {
           />
         </label>
         <button type="button" onClick={handleButtonClick}>
-          Buscar Película
+          {buscando ? "Buscando..." : "Buscar Película"}
         </button>
       </form>
       <ListaPeliculas peliculas={peliculas} />
