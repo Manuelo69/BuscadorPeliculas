@@ -4,7 +4,7 @@ import React from "react";
 
 function ListaPeliculas({ peliculas }) {
   return (
-    <div className="peliculas">
+    <div className="pelicula ">
       {peliculas.map((pelicula) => (
         <div key={pelicula.imbdID} className="bg-green-500">
           <div className="info-pelicula">
