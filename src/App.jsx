@@ -51,10 +51,10 @@ function App() {
 
   return (
     <>
-      <form action="#">
+      <form action="#" className="m-3">
         <h1>Buscador de películas</h1>
         <label htmlFor="peliculas">
-          <legend>Introduce película</legend>
+          <legend className="text-xl">Introduce película</legend>
           <input
             type="text"
             name="peliculas"
@@ -62,6 +62,7 @@ function App() {
             placeholder="Introduce película"
             value={busqueda}
             onChange={handleInputChange}
+            className=" p-6"
           />
         </label>
         <label htmlFor="ordenar">
