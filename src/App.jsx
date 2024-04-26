@@ -3,7 +3,7 @@ import "./App.css";
 import ListaPeliculas from "./Components/ListaPeliculas/ListaPeliculas";
 
 function App() {
-  const [busqueda, setBusqueda] = useState("Batman"); // Estado para la búsqueda
+  const [busqueda, setBusqueda] = useState("One piece"); // Estado para la búsqueda
   const [peliculas, setPeliculas] = useState([]); // Estado para las películas
   const [buscando, setBuscando] = useState(false); //Estado de la busqueda
   const [ordenadoPorTitulo, setOrdenadoPorTitulo] = useState(false); // Estado para indicar si las películas están ordenadas por título
@@ -40,6 +40,12 @@ function App() {
   const handleCheckboxChange = () => {
     setOrdenadoPorTitulo(!ordenadoPorTitulo); // Alternar el estado del checkbox
   };
+
+  useEffect(() => {
+    // Obtener las primeras 10 películas al cargar la página
+    getPeliculas(busqueda);
+    setBusqueda("");
+  }, []);
 
   useEffect(() => {
     if (ordenadoPorTitulo) {
