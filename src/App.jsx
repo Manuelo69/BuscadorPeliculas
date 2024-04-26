@@ -52,6 +52,8 @@ function App() {
       setPeliculas((prevPeliculas) =>
         [...prevPeliculas].sort((a, b) => a.Title.localeCompare(b.Title))
       );
+    } else {
+      getPeliculas(busqueda);
     }
   }, [ordenadoPorTitulo]);
 
