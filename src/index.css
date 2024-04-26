@@ -17,6 +17,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.peliculas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+}
+
 a {
   font-weight: 500;
   color: #646cff;

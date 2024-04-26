@@ -3,7 +3,7 @@ import "./App.css";
 import ListaPeliculas from "./Components/ListaPeliculas/ListaPeliculas";
 
 function App() {
-  const [busqueda, setBusqueda] = useState(""); // Estado para la búsqueda
+  const [busqueda, setBusqueda] = useState("Batman"); // Estado para la búsqueda
   const [peliculas, setPeliculas] = useState([]); // Estado para las películas
   const [buscando, setBuscando] = useState(false); //Estado de la busqueda
   const [ordenadoPorTitulo, setOrdenadoPorTitulo] = useState(false); // Estado para indicar si las películas están ordenadas por título
@@ -61,7 +61,7 @@ function App() {
             placeholder="Introduce película"
             value={busqueda}
             onChange={handleInputChange}
-            className=" p-2 rounded-xl w-72"
+            className="p-2 rounded-xl w-72"
           />
         </label>
         <label htmlFor="ordenar">
