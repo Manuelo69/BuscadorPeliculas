@@ -64,7 +64,6 @@ function App() {
             onChange={handleInputChange}
           />
         </label>
-        <br />
         <label htmlFor="ordenar">
           Ordenador por titulo
           <input
@@ -75,7 +74,6 @@ function App() {
             onChange={handleCheckboxChange}
           />
         </label>
-        <br />
         <button type="button" onClick={handleButtonClick}>
           {buscando ? "Buscando..." : "Buscar Película"}
         </button>

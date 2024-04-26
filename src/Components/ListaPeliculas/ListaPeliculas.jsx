@@ -6,14 +6,11 @@ function ListaPeliculas({ peliculas }) {
   return (
     <div className="peliculas">
       {peliculas.map((pelicula) => (
-        <div key={pelicula.imbdID}>
+        <div key={pelicula.imbdID} className="bg-green-500">
           <div className="info-pelicula">
             <h3>{pelicula.Title}</h3>
             <p>Año: {pelicula.Year}</p>
             <img src={pelicula.Poster} alt={pelicula.Title} />
-            <p>
-              -----------------------------------------------------------------------------
-            </p>
           </div>
         </div>
       ))}
