@@ -8,12 +8,20 @@ function ListaPeliculas({ peliculas }) {
       {peliculas.map((pelicula) => (
         <div
           key={pelicula.imbdID}
-          className="grid grid-flow-col justify-center"
+          className="grid grid-flow-col bg-white rounded-xl p-4 mt-4 flex"
         >
-          <div className="info-pelicula content-center">
-            <h3>{pelicula.Title}</h3>
-            <p className="font-bold">Año: {pelicula.Year}</p>
-            <img src={pelicula.Poster} alt={pelicula.Title} />
+          <div className="info-pelicula grid" key={pelicula.imbdID + "2"}>
+            <h3 className="content-start gap-3 grid overflow-hidden whitespace-no-wrap">
+              {pelicula.Title}
+            </h3>
+            <p className="font-bold content-center">Año: {pelicula.Year}</p>
+            <div className="content-end">
+              <img
+                src={pelicula.Poster}
+                alt={pelicula.Title}
+                className="content-end"
+              />
+            </div>
           </div>
         </div>
       ))}
