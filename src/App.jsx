@@ -51,8 +51,8 @@ function App() {
 
   return (
     <>
-      <form action="#" className="flex flex-col gap-3">
-        <h1 className="">Buscador de películas</h1>
+      <form action="#" className="flex flex-col gap-3 items-center">
+        <h1 className="mb-2 font-bold shadow-sm">Buscador de películas</h1>
         <label htmlFor="peliculas">
           <input
             type="text"
@@ -61,7 +61,7 @@ function App() {
             placeholder="Introduce película"
             value={busqueda}
             onChange={handleInputChange}
-            className=" p-4 rounded-xl"
+            className=" p-2 rounded-xl w-72"
           />
         </label>
         <label htmlFor="ordenar">
@@ -72,9 +72,10 @@ function App() {
             name="ordenar"
             checked={ordenadoPorTitulo}
             onChange={handleCheckboxChange}
+            className=""
           />
         </label>
-        <button type="button" onClick={handleButtonClick}>
+        <button type="button" onClick={handleButtonClick} className="w-40">
           {buscando ? "Buscando..." : "Buscar Película"}
         </button>
       </form>
