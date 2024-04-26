@@ -9,12 +9,13 @@ function App() {
   const [ordenadoPorTitulo, setOrdenadoPorTitulo] = useState(false); // Estado para indicar si las películas están ordenadas por título
 
   const ultimaBusqueda = useRef(""); // Referencia para la última búsqueda
+  const timeoutRef = useRef(null); // Referencia para el timeout del debounce
 
   const getPeliculas = async (peli) => {
     try {
       setBuscando(true);
       const response = await fetch(
-        `https://omdbapi.com/?s=${peli}*&apikey=dd8f4ac5` //Llamada de la api dinamica con la s
+        `https://omdbapi.com/?s=${peli}*&apikey=dd8f4ac5` //Llamada de la api dinámica con la s
       );
       const data = await response.json();
       setPeliculas(data.Search || []); // Actualizar el estado de las películas
@@ -27,14 +28,22 @@ function App() {
   };
 
   const handleInputChange = (event) => {
-    setBusqueda(event.target.value); // Actualizar el estado de la búsqueda
-  };
+    const inputValue = event.target.value;
+    setBusqueda(inputValue); // Actualizar el estado de la búsqueda
 
-  const handleButtonClick = () => {
-    if (busqueda.trim() !== ultimaBusqueda.current.trim()) {
-      getPeliculas(busqueda.trim());
-      ultimaBusqueda.current = busqueda.trim(); // Actualizar la última búsqueda
+    // Limpiar el timeout anterior si existe
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
     }
+
+    // Establecer un nuevo timeout para realizar la búsqueda después de 500ms
+    timeoutRef.current = setTimeout(() => {
+      // Realizar la búsqueda con el valor actualizado
+      if (inputValue.trim() !== ultimaBusqueda.current.trim()) {
+        getPeliculas(inputValue.trim());
+        ultimaBusqueda.current = inputValue.trim(); // Actualizar la última búsqueda
+      }
+    }, 500);
   };
 
   const handleCheckboxChange = () => {
@@ -48,11 +57,13 @@ function App() {
   }, []);
 
   useEffect(() => {
+    // Reordenar las películas cuando cambie el estado de ordenadoPorTitulo
     if (ordenadoPorTitulo) {
       setPeliculas((prevPeliculas) =>
         [...prevPeliculas].sort((a, b) => a.Title.localeCompare(b.Title))
       );
     } else {
+      // Si no está ordenado, restaurar el orden original
       getPeliculas(busqueda);
     }
   }, [ordenadoPorTitulo]);
@@ -83,11 +94,8 @@ function App() {
             className=""
           />
         </label>
-        <button type="button" onClick={handleButtonClick} className="w-40">
-          {buscando ? "Buscando..." : "Buscar Película"}
-        </button>
       </form>
-      <ListaPeliculas peliculas={peliculas} />
+      {buscando ? <p>Buscando...</p> : <ListaPeliculas peliculas={peliculas} />}
     </>
   );
 }
