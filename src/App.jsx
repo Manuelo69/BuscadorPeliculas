@@ -46,6 +46,14 @@ function App() {
     }, 500);
   };
 
+  const handleButtonClick = () => {
+    // Realizar la búsqueda cuando se haga clic en el botón
+    if (busqueda.trim() !== ultimaBusqueda.current.trim()) {
+      getPeliculas(busqueda.trim());
+      ultimaBusqueda.current = busqueda.trim(); // Actualizar la última búsqueda
+    }
+  };
+
   const handleCheckboxChange = () => {
     setOrdenadoPorTitulo(!ordenadoPorTitulo); // Alternar el estado del checkbox
   };
@@ -94,8 +102,11 @@ function App() {
             className=""
           />
         </label>
+        <button type="button" onClick={handleButtonClick} className="w-40">
+          {buscando ? "Buscando..." : "Buscar Película"}
+        </button>
       </form>
-      {buscando ? <p>Buscando...</p> : <ListaPeliculas peliculas={peliculas} />}
+      <ListaPeliculas peliculas={peliculas} />
     </>
   );
 }

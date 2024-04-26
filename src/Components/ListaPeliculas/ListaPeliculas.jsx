@@ -3,6 +3,8 @@
 import React from "react";
 
 function ListaPeliculas({ peliculas }) {
+  const defaultPosterUrl =
+    "https://ih1.redbubble.net/image.1893341687.8294/fposter,small,wall_texture,product,750x1000.jpg";
   return (
     <div className="pelicula grid grid-cols-auto-fit-minmax gap-4 content-center ">
       {peliculas.map((pelicula) => (
@@ -15,7 +17,11 @@ function ListaPeliculas({ peliculas }) {
               {pelicula.Title}
             </h3>
             <p className="font-bold">Año: {pelicula.Year}</p>
-            <img src={pelicula.Poster} alt={pelicula.Title} className="h-52 " />
+            <img
+              src={pelicula.Poster || defaultPosterUrl}
+              alt={pelicula.Title}
+              className="h-52 "
+            />
           </div>
         </div>
       ))}
