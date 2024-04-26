@@ -8,18 +8,18 @@ function ListaPeliculas({ peliculas }) {
       {peliculas.map((pelicula) => (
         <div
           key={pelicula.imbdID}
-          className="grid grid-flow-col bg-white rounded-xl p-4 mt-4 flex"
+          className="grid grid-flow-col bg-white rounded-xl p-4 mt-4"
         >
-          <div className="info-pelicula grid" key={pelicula.imbdID + "2"}>
-            <h3 className="content-start gap-3 grid overflow-hidden whitespace-no-wrap">
+          <div className="info-pelicula grid grid-cols-1 gap-2 items-center">
+            <h3 className="overflow-hidden whitespace-no-wrap line-clamp-2 text-xl">
               {pelicula.Title}
             </h3>
-            <p className="font-bold content-center">Año: {pelicula.Year}</p>
-            <div className="content-end">
+            <p className="font-bold">Año: {pelicula.Year}</p>
+            <div className="flex justify-center">
               <img
                 src={pelicula.Poster}
                 alt={pelicula.Title}
-                className="content-end"
+                className="h-52 object-contain"
               />
             </div>
           </div>
