@@ -30,7 +30,6 @@ function App() {
   const handleInputChange = (event) => {
     const inputValue = event.target.value;
     setBusqueda(inputValue); // Actualizar el estado de la búsqueda
-
     // Limpiar el timeout anterior si existe
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);

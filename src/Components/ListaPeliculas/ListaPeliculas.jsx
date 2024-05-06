@@ -23,7 +23,7 @@ function ListaPeliculas({ peliculas }) {
                 pelicula.Poster
               }
               alt={pelicula.Title}
-              className="h-52 w-36 rounded-lg"
+              className="h-52 w-full rounded-lg"
             />
           </div>
         </div>
